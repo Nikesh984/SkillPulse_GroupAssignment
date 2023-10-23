@@ -22,8 +22,7 @@ public class Person {
     String ssn;
     
     String passportNumber;
-    
-    int age;
+
     
     
      public Person(String id, String firstName, String lastName, String email) {

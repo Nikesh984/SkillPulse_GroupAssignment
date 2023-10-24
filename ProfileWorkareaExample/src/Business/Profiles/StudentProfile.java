@@ -14,6 +14,7 @@ import Business.Person.Person;
 public class StudentProfile extends Profile {
 
     Person person;
+    private double CPA;
 //    Transcript transcript;
     //   EmploymentHistroy employmenthistory;
 

@@ -3,16 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/UserInterface/WorkAreas/FacultyRole/FacultyWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Profiles/StudentDirectory.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Person/PersonDirectory.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/ConfigureABusiness.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Profiles/Profile.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/UserAccounts/UserAccountDirectory.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Business.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Profiles/EmployeeProfile.java</file>
             <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/UserAccounts/UserAccount.java</file>
-            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Person/Person.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Profiles/StudentDirectory.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/UserInterface/WorkAreas/FacultyRole/FacultyWorkAreaJPanel.java</file>
             <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Profiles/StudentProfile.java</file>
             <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Profiles/StudentAccount.java</file>
-            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Person/PersonDirectory.java</file>
-            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Business.java</file>
-            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/UserAccounts/UserAccountDirectory.java</file>
-            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Profiles/Profile.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/Business/Person/Person.java</file>
+            <file>file:/C:/Users/NIKHIL/Desktop/AED%20Lab/ProfileWorkareaExample/src/ProfileWorkAreaMainFrame.java</file>
         </group>
     </open-files>
 </project-private>

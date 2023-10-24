@@ -23,9 +23,9 @@ public class UserAccountDirectory {
 
     }
 
-    public UserAccount newUserAccount(Profile p, String un, String pw) {
+    public UserAccount newUserAccount(Profile p, String un, String pw, boolean isEnabled) {
 
-        UserAccount ua = new UserAccount (p,  un,  pw);
+        UserAccount ua = new UserAccount (p,  un,  pw, isEnabled);
         useraccountlist.add(ua);
         return ua;
     }
@@ -54,4 +54,16 @@ public class UserAccountDirectory {
      {
          return useraccountlist;
      }
+     
+     
+    //TO VALIDATE USERNAME
+    public boolean checkUserName(String userName){
+         for(UserAccount ua : useraccountlist){
+             
+            if (ua.getUserLoginName().equalsIgnoreCase(userName)) {
+                return true;
+            }
+        }
+         return false;
+    }
 }

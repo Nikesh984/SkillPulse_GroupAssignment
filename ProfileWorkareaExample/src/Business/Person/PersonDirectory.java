@@ -21,9 +21,9 @@ public class PersonDirectory {
 
     }
 
-    public Person newPerson(String id, String firstName, String lastName, String email) {
+    public Person newPerson(String firstname, String lastname, String emailid, String id) {
 
-        Person p = new Person(id, firstName, lastName, email);
+        Person p = new Person(firstname, lastname, emailid, id);
         personlist.add(p);
         return p;
     }
@@ -36,7 +36,14 @@ public class PersonDirectory {
                 return p;
             }
         }
-            return null; //not found after going through the whole list
-         }
+        return null; //not found after going through the whole list
+    }
+    
+    
+
+    public ArrayList<Person> getPersonlist() {
+        return personlist;
+    }
+    
     
 }

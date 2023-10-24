@@ -12,27 +12,20 @@ package Business.Person;
 public class Person {
 
     String id;
-    
-    String firstName;
-    
-    String lastName;
-    
-    String email;
-    
+    String FirstName;
+    String LastName;
+    String EmailID;
     String ssn;
-    
     String passportNumber;
 
-    
-    
-     public Person(String id, String firstName, String lastName, String email) {
+    public Person(String Firstname, String Lastname, String EmailID, String id) {
 
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        this.FirstName = Firstname;
+        this.LastName = Lastname;
+        this.EmailID = EmailID;
     }
-
+    
     public String getSsn() {
         return ssn;
     }
@@ -45,18 +38,35 @@ public class Person {
         return passportNumber;
     }
 
-    public void setPassportNumber(String passportNumber) {
+    //getter and setter
+    public void setPassportNumber(String passportNumber) {    
         this.passportNumber = passportNumber;
     }
 
     public String getFirstName() {
-        return firstName;
+        return FirstName;
     }
 
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
+    }
 
     public String getLastName() {
-        return lastName;
+        return LastName;
     }
+
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
+    }
+
+    public String getEmailID() {
+        return EmailID;
+    }
+
+    public void setEmailID(String EmailID) {
+        this.EmailID = EmailID;
+    }
+
     
     
     public String getPersonId() {

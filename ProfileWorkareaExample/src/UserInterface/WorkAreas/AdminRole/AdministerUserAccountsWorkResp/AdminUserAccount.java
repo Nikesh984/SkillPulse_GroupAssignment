@@ -5,7 +5,16 @@
  */
 package UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp;
 
+import Business.Business;
+import Business.Person.Person;
+import Business.Person.PersonDirectory;
+import Business.Profiles.Profile;
+import Business.Profiles.StudentProfile;
 import Business.UserAccounts.UserAccount;
+import Business.UserAccounts.UserAccountDirectory;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -20,14 +29,27 @@ public class AdminUserAccount extends javax.swing.JPanel {
     JPanel CardSequencePanel;
 
     UserAccount selecteduseraccount;
+    Business business;
+    UserAccountDirectory userAccountDirectory;
+    PersonDirectory personDirectory;
 
-    public AdminUserAccount(UserAccount sua, JPanel jp) {
+    public AdminUserAccount(UserAccount sua, JPanel jp, Business b) {
 
         CardSequencePanel = jp;
         selecteduseraccount= sua;
+        business = b;
         initComponents();
         //display user details here
-
+        Profile profile = selecteduseraccount.getAssociatedPersonProfile();
+        Person p = profile.getPerson();
+        
+        jTextField1.setText(p.getFirstName());
+        jTextField2.setText(p.getLastName());
+        jCheckBox1.setSelected(selecteduseraccount.isIsEnabled());
+        jTextField3.setText(selecteduseraccount.getRole());
+        jTextField4.setText(p.getEmailID());
+        jTextField5.setText(selecteduseraccount.getUserLoginName());
+        
 
     }
 
@@ -42,26 +64,40 @@ public class AdminUserAccount extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Back = new javax.swing.JButton();
+        Update = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Back1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
 
-        Back.setText("Update>>");
-        Back.addActionListener(new java.awt.event.ActionListener() {
+        Update.setText("Update>>");
+        Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
+                UpdateActionPerformed(evt);
             }
         });
-        add(Back);
-        Back.setBounds(480, 290, 100, 32);
+        add(Update);
+        Update.setBounds(500, 530, 100, 22);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Administer User Account");
         add(jLabel2);
-        jLabel2.setBounds(21, 20, 550, 29);
+        jLabel2.setBounds(21, 20, 550, 28);
 
         Back1.setText("<< Back");
         Back1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,30 +106,163 @@ public class AdminUserAccount extends javax.swing.JPanel {
             }
         });
         add(Back1);
-        Back1.setBounds(40, 290, 100, 32);
+        Back1.setBounds(40, 530, 100, 22);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("First Name :");
+        add(jLabel1);
+        jLabel1.setBounds(150, 90, 110, 16);
+        add(jTextField1);
+        jTextField1.setBounds(280, 90, 190, 22);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Last Name :");
+        add(jLabel3);
+        jLabel3.setBounds(150, 150, 70, 16);
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        add(jTextField2);
+        jTextField2.setBounds(280, 150, 190, 22);
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("isEnabled :");
+        add(jLabel4);
+        jLabel4.setBounds(150, 210, 70, 16);
+        add(jCheckBox1);
+        jCheckBox1.setBounds(280, 210, 19, 19);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel5.setText("Role :");
+        add(jLabel5);
+        jLabel5.setBounds(150, 260, 70, 16);
+
+        jTextField3.setEditable(false);
+        add(jTextField3);
+        jTextField3.setBounds(280, 260, 190, 22);
+
+        jLabel6.setText("Email :");
+        add(jLabel6);
+        jLabel6.setBounds(150, 320, 35, 16);
+        add(jTextField4);
+        jTextField4.setBounds(280, 320, 190, 22);
+
+        jLabel7.setText("Username :");
+        add(jLabel7);
+        jLabel7.setBounds(140, 380, 70, 16);
+        add(jTextField5);
+        jTextField5.setBounds(280, 380, 190, 22);
+
+        jPasswordField1.setText("jPasswordField1");
+        add(jPasswordField1);
+        jPasswordField1.setBounds(280, 440, 190, 22);
+
+        jLabel8.setText("Password :");
+        add(jLabel8);
+        jLabel8.setBounds(140, 450, 90, 16);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // TODO add your handling code here:
-        CardSequencePanel.remove(this);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        Profile profile = selecteduseraccount.getAssociatedPersonProfile();
+        Person p = profile.getPerson();
+        
+        
+        userAccountDirectory = business.getUserAccountDirectory();
+        personDirectory = business.getPersonDirectory();
+       
+        for(Person person : personDirectory.getPersonlist())
+        {
+            if(person.isMatch(p.getPersonId()))
+            {
+                person.setFirstName(jTextField1.getText());
+                person.setLastName(jTextField2.getText());
+                person.setEmailID(jTextField4.getText());
+                break;
+            }
+        }
+        
+        for(UserAccount ua : userAccountDirectory.getUserAccountList())
+        {
+            if (ua.isMatch(p.getPersonId())) {
+
+                if (ua.getUserLoginName().equals(jTextField5.getText())) {
+                    ua.setUsername(jTextField5.getText());
+                    ua.setIsEnabled(jCheckBox1.isSelected());
+                    ManageUserAccountsJPanel manageUsers = new ManageUserAccountsJPanel(business, CardSequencePanel);
+                    
+                    Component component = CardSequencePanel.getComponent(1);
+                    ManageUserAccountsJPanel manageusers = (ManageUserAccountsJPanel) component;
+                    
+                    CardSequencePanel.remove(this);
+                    ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+                    manageusers.refreshTable();
+                    
+                } else if (!ua.getUserLoginName().equals(jTextField5.getText())) {
+                    if (userAccountDirectory.checkUserName(jTextField5.getText())) {
+                        JOptionPane.showMessageDialog(this, "UserName alread taken, please try using another");
+                        jTextField5.setText(ua.getUserLoginName());
+                        
+                    } else {
+                        ua.setUsername(jTextField5.getText());
+                        ua.setIsEnabled(jCheckBox1.isSelected());
+                        Component component = CardSequencePanel.getComponent(1);
+                        ManageUserAccountsJPanel manageusers = (ManageUserAccountsJPanel) component;
+
+                        CardSequencePanel.remove(this);
+                        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+                        manageusers.refreshTable();
+                    }
+                }
+//               Component component = CardSequencePanel.getComponent(1);
+//                ManageUserAccountsJPanel manageusers = (ManageUserAccountsJPanel) component;
+//
+//                CardSequencePanel.remove(this);
+//                ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+//                manageusers.refreshTable(); 
+            }
+        }
 
 
-    }//GEN-LAST:event_BackActionPerformed
+    }//GEN-LAST:event_UpdateActionPerformed
 
     private void Back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back1ActionPerformed
         // TODO add your handling code here:
          CardSequencePanel.remove(this);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).previous(CardSequencePanel);
+
+//        CardSequencePanel.remove(this);
+//        ((java.awt.CardLayout) CardSequencePanel.getLayout()).previous(CardSequencePanel);
 
 
     }//GEN-LAST:event_Back1ActionPerformed
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
     private javax.swing.JButton Back1;
+    private javax.swing.JButton Update;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
 }

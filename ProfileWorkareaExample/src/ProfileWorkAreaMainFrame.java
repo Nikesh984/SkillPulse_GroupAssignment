@@ -5,7 +5,6 @@
  */
 package Business;
 
-import Business.Person.Person;
 import Business.Profiles.EmployeeProfile;
 import Business.Profiles.Profile;
 import Business.Profiles.StudentProfile;
@@ -14,9 +13,13 @@ import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 
 import UserInterface.WorkAreas.AdminRole.AdminRoleWorkAreaJPanel;
+import UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp.ManageUserAccountsJPanel;
 import UserInterface.WorkAreas.FacultyRole.FacultyWorkAreaJPanel;
 import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
+import UserInterface.WorkArea.SignUp.SignUpJPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -52,38 +55,37 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
         SplitHomeArea = new javax.swing.JSplitPane();
         actionsidejpanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        UserNameTextField = new javax.swing.JTextField();
-        PasswordTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        btn_LogIn = new javax.swing.JButton();
+        lbl_UserName = new javax.swing.JLabel();
+        txt_UserName = new javax.swing.JTextField();
+        lbl_Password = new javax.swing.JLabel();
+        btn_SignUp = new javax.swing.JButton();
+        jpf_Password = new javax.swing.JPasswordField();
         CardSequencePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 575));
 
-        actionsidejpanel.setBackground(new java.awt.Color(0, 153, 153));
         actionsidejpanel.setMinimumSize(new java.awt.Dimension(200, 200));
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_LogIn.setText("Login");
+        btn_LogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("User Name");
+        lbl_UserName.setText("User Name");
 
-        UserNameTextField.setText("admin");
+        lbl_Password.setText("Password");
 
-        PasswordTextField.setText("XXXX");
-        PasswordTextField.addActionListener(new java.awt.event.ActionListener() {
+        btn_SignUp.setText("Sign Up");
+        btn_SignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordTextFieldActionPerformed(evt);
+                btn_SignUpActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Password");
 
         javax.swing.GroupLayout actionsidejpanelLayout = new javax.swing.GroupLayout(actionsidejpanel);
         actionsidejpanel.setLayout(actionsidejpanelLayout);
@@ -92,34 +94,46 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             .addGroup(actionsidejpanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(actionsidejpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(UserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txt_UserName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(actionsidejpanelLayout.createSequentialGroup()
+                        .addGroup(actionsidejpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_UserName)
+                            .addComponent(lbl_Password)
+                            .addGroup(actionsidejpanelLayout.createSequentialGroup()
+                                .addComponent(btn_LogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_SignUp)))
+                        .addGap(0, 14, Short.MAX_VALUE))
+                    .addComponent(jpf_Password))
+                .addContainerGap())
         );
         actionsidejpanelLayout.setVerticalGroup(
             actionsidejpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(actionsidejpanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(lbl_UserName)
                 .addGap(4, 4, 4)
-                .addComponent(UserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbl_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpf_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(actionsidejpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_LogIn)
+                    .addComponent(btn_SignUp))
+                .addGap(397, 397, 397))
         );
 
         SplitHomeArea.setLeftComponent(actionsidejpanel);
 
         CardSequencePanel.setLayout(new java.awt.CardLayout());
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel3.setText("Education Going Digital .... Info 5100 ");
+        jLabel3.setFont(new java.awt.Font("Baloo 2", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Welcome to SkillPulse");
+        jLabel3.setPreferredSize(new java.awt.Dimension(920, 570));
         CardSequencePanel.add(jLabel3, "card2");
 
         SplitHomeArea.setRightComponent(CardSequencePanel);
@@ -133,39 +147,52 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //      WorkAreaJPanel ura = new WorkAreaJPanel(workareajpanl);
 
-        String un = UserNameTextField.getText();
-        String pw = PasswordTextField.getText();
+        String un = txt_UserName.getText();
+        
+        //Converting Char Array to the String type
+//        String pw = hashPassword(new String(jpf_Password.getPassword()));
+
+        String pw = new String(jpf_Password.getPassword());
+        
+        System.out.println(pw);
 
         UserAccountDirectory uad = business.getUserAccountDirectory();
-        UserAccount useraccount = uad.AuthenticateUser(un, pw);
-        if (useraccount == null) {
-            return;
-        }
-        StudentWorkAreaJPanel studentworkareajpanel;
-        FacultyWorkAreaJPanel facultyworkarea;
-        AdminRoleWorkAreaJPanel adminworkarea;
-        String r = useraccount.getRole();
-        Profile profile = useraccount.getAssociatedPersonProfile();
-        //       if (r.equalsIgnoreCase("sales")) {
-
-        if (profile instanceof EmployeeProfile) {
-
-            adminworkarea = new AdminRoleWorkAreaJPanel(business, CardSequencePanel);
-            CardSequencePanel.removeAll();
-            CardSequencePanel.add("Admin", adminworkarea);
-            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-
+        
+        for(UserAccount u : uad.getUserAccountList()){
+            System.out.println(u.getUserLoginName() + u.getRole());
         }
         
-        if (profile instanceof StudentProfile) {
-
-            StudentProfile spp = (StudentProfile) profile;
-            studentworkareajpanel = new StudentWorkAreaJPanel(business, spp, CardSequencePanel);
-            CardSequencePanel.removeAll();
-            CardSequencePanel.add("student", studentworkareajpanel);
-            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-
+        UserAccount useraccount = uad.AuthenticateUser(un, pw);
+        
+        if (useraccount == null) {
+            
+            JOptionPane.showMessageDialog(this, "Incorrect UserName or Password");
         }
+        else if (useraccount!=null && useraccount.isIsEnabled()){
+            StudentWorkAreaJPanel studentworkareajpanel;
+            FacultyWorkAreaJPanel facultyworkarea;
+            AdminRoleWorkAreaJPanel adminworkarea;
+            String r = useraccount.getRole();
+            Profile profile = useraccount.getAssociatedPersonProfile();
+        //       if (r.equalsIgnoreCase("sales")) {
+
+            if (profile instanceof EmployeeProfile) {
+
+                adminworkarea = new AdminRoleWorkAreaJPanel(business, CardSequencePanel);
+                CardSequencePanel.removeAll();
+                CardSequencePanel.add("Admin", adminworkarea);
+                ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+
+            }
+        
+            else if (profile instanceof StudentProfile) {
+
+                StudentProfile spp = (StudentProfile) profile;
+                studentworkareajpanel = new StudentWorkAreaJPanel(business, spp, CardSequencePanel);
+                CardSequencePanel.removeAll();
+                CardSequencePanel.add("student", studentworkareajpanel);
+                ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+            }
 
  /*      if (profile instanceof FacultyProfile) {
             facultyworkarea = new FacultyWorkAreaJPanel(business, CardSequencePanel);
@@ -174,13 +201,20 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
-*/
+*/      }
 
     }//GEN-LAST:event_LoginButtonActionPerformed
 
-    private void PasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTextFieldActionPerformed
+    private void btn_SignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignUpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordTextFieldActionPerformed
+        
+        SignUpJPanel signupPanel = new SignUpJPanel(business, CardSequencePanel);
+                
+        //ManageUserAccountsJPanel aos = new ManageUserAccountsJPanel(business, CardSequencePanel);
+
+        CardSequencePanel.add("SignUpPanel", signupPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    }//GEN-LAST:event_btn_SignUpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,46 +245,25 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
-        
-
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ProfileWorkAreaMainFrame().setVisible(true);
             }
         });
-        
-        UserAccountDirectory userAccountDirectory = new UserAccountDirectory();
-       
-        Profile studentProfile = new StudentProfile(new Person("123", "Nikesh", "Biraggari", "abc"));
-        
-        Person p = studentProfile.getPerson();
-
-        UserAccount userAccount = userAccountDirectory.newUserAccount(studentProfile, "Nikesh", "Nikesh");
-        
-        Profile professorProfile = new EmployeeProfile(new Person("345","Kal", "Bugara", "abc"));
-        
-        Person p1 = professorProfile.getPerson();
-        
-        UserAccount professorAccount = userAccountDirectory.newUserAccount(professorProfile, "Professor", "Professor");
-        
-        
-
-        System.out.println("Username : " + userAccount.getUserLoginName() + " | Profile : " + userAccount.getRole() + " | FirstName : " + p.getFirstName() + "| LastName : "+p.getLastName() + "| ID : "+userAccount.getPersonId());
-        
-        System.out.println("Username : "+professorAccount.getUserLoginName() + " | Profile : "+professorAccount.getRole() + " | FirstName : " + p1.getFirstName() + " | LastName : "+p1.getLastName() + " | ID : "+professorAccount.getPersonId());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CardSequencePanel;
-    private javax.swing.JTextField PasswordTextField;
     private javax.swing.JSplitPane SplitHomeArea;
-    private javax.swing.JTextField UserNameTextField;
     private javax.swing.JPanel actionsidejpanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btn_LogIn;
+    private javax.swing.JButton btn_SignUp;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jpf_Password;
+    private javax.swing.JLabel lbl_Password;
+    private javax.swing.JLabel lbl_UserName;
+    private javax.swing.JTextField txt_UserName;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,6 +22,7 @@ public class EmployeeProfile extends Profile {
     }
     @Override
     public String getRole(){
+        //change it to Professor
         return  "Admin";
     }
 
